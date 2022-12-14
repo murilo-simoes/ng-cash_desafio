@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:admin@postgres:5432/ng-cash?schema=public"
+}
+
+model Users {
+  idUser   Int       @id @default(autoincrement())
+  username String    @unique
+  password String
+  Accounts Accounts?
+}
+
+model Accounts {
+  idAccount Int   @id @default(autoincrement())
+  balance   Int
+  userId    Int   @unique
+  user      Users @relation(fields: [userId], references: [idUser])
+}
+
+model Transactions {
+  idTransaction     Int      @id @default(autoincrement())
+  value             Int
+  debitedAccountId  Int
+  creditedAccountId Int
+  createdAt         DateTime @default(now())
+}
