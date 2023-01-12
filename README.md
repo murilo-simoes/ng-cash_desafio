@@ -13,6 +13,13 @@ Esse comando abrirá o terminal na pasta server.
 ```bash
   cd server
 ```
+Crie um arquivo .env e coloque isso no arquivo
+
+```bash
+  DATABASE_URL="postgresql://postgres:admin@postgres:5432/ng-cash?schema=public"
+  JWT_SECRET = 814f5891eedeb572b699a78ac5fec2c1
+  JWT_EXPIRES_IN=1d
+```
 
 Depois de entrar na pasta server, execute o seguinte comando para criar os containers no Docker:
 
